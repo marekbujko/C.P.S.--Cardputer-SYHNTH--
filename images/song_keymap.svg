@@ -87,8 +87,10 @@
 <text x="233.5" y="112.5" text-anchor="middle" font-size="8.5" fill="#ffffff">g</text>
 <circle cx="241.0" cy="102.0" r="7" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
 <text x="241.0" y="104.7" text-anchor="middle" font-size="7.5" fill="#1b1b1b" font-weight="bold">4</text>
-<rect x="252.0" y="94" width="31.0" height="31" rx="4" fill="#333333" stroke="#555555" stroke-width="1.2"/>
-<text x="267.5" y="112.5" text-anchor="middle" font-size="8.5" fill="#777777">h</text>
+<rect x="252.0" y="94" width="31.0" height="31" rx="4" fill="#6a3f8a" stroke="#c090e0" stroke-width="1.2"/>
+<text x="267.5" y="112.5" text-anchor="middle" font-size="8.5" fill="#ffffff">h</text>
+<circle cx="275.0" cy="102.0" r="7" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
+<text x="275.0" y="104.7" text-anchor="middle" font-size="7.5" fill="#1b1b1b" font-weight="bold">17</text>
 <rect x="286.0" y="94" width="31.0" height="31" rx="4" fill="#333333" stroke="#555555" stroke-width="1.2"/>
 <text x="301.5" y="112.5" text-anchor="middle" font-size="8.5" fill="#777777">j</text>
 <rect x="320.0" y="94" width="31.0" height="31" rx="4" fill="#3f7a3f" stroke="#6fcf6f" stroke-width="1.2"/>
@@ -198,5 +200,8 @@
 <circle cx="251.0" cy="339" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
 <text x="251.0" y="341.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">16</text>
 <text x="261.0" y="342" font-size="8.5" fill="#dddddd">Tab: 元のモード(PLAY/SEQ)へ戻る</text>
-<text x="14" y="372" font-size="8" fill="#888888">G0ボタン(長押し): Songモードへの出入り ※キーボード上にはありません</text>
+<circle cx="251.0" cy="355" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
+<text x="251.0" y="357.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">17</text>
+<text x="261.0" y="358" font-size="8.5" fill="#dddddd">H: ヘルプ表示(長押し) / Shift+H:ラッチ表示</text>
+<text x="14" y="372" font-size="8" fill="#888888">G0ボタン(短押し): PLAY⇔SEQ切替 / G0ボタン(長押し): Songモードへ ※キーボード上にはありません</text>
 </svg>

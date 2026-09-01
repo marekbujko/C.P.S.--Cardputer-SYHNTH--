@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="490" height="380" viewBox="0 0 490 380" font-family="Verdana, Arial, sans-serif">
-<rect x="0" y="0" width="490" height="380" fill="#1b1b1b"/>
-<text x="245.0" y="12" text-anchor="middle" font-size="11" fill="#8fd6ff" font-weight="bold">SEQ Mode Keymap (CardputerADV)</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="490" height="384" viewBox="0 0 490 384" font-family="Verdana, Arial, sans-serif">
+<rect x="0" y="0" width="490" height="384" fill="#1b1b1b"/>
+<text x="245.0" y="12" text-anchor="middle" font-size="11" fill="#8fd6ff" font-weight="bold">SEQ Mode Key Map (CardputerADV)</text>
 <rect x="14.0" y="22" width="31.0" height="31" rx="4" fill="#333333" stroke="#555555" stroke-width="1.2"/>
 <text x="29.5" y="40.5" text-anchor="middle" font-size="8.5" fill="#777777">esc</text>
 <rect x="48.0" y="22" width="31.0" height="31" rx="4" fill="#2f5f8f" stroke="#5fa8e0" stroke-width="1.2"/>
@@ -31,8 +31,10 @@
 <text x="471.5" y="40.5" text-anchor="middle" font-size="8.5" fill="#ffffff">del</text>
 <circle cx="479.0" cy="30.0" r="7" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
 <text x="479.0" y="32.7" text-anchor="middle" font-size="7.5" fill="#1b1b1b" font-weight="bold">6</text>
-<rect x="14.0" y="58" width="31.0" height="31" rx="4" fill="#333333" stroke="#555555" stroke-width="1.2"/>
-<text x="29.5" y="76.5" text-anchor="middle" font-size="8.5" fill="#777777">tab</text>
+<rect x="14.0" y="58" width="31.0" height="31" rx="4" fill="#6a3f8a" stroke="#c090e0" stroke-width="1.2"/>
+<text x="29.5" y="76.5" text-anchor="middle" font-size="8.5" fill="#ffffff">tab</text>
+<circle cx="37.0" cy="66.0" r="7" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
+<text x="37.0" y="68.7" text-anchor="middle" font-size="7.5" fill="#1b1b1b" font-weight="bold">15</text>
 <rect x="48.0" y="58" width="31.0" height="31" rx="4" fill="#2f5f8f" stroke="#5fa8e0" stroke-width="1.2"/>
 <text x="63.5" y="76.5" text-anchor="middle" font-size="8.5" fill="#ffffff">q</text>
 <rect x="82.0" y="58" width="31.0" height="31" rx="4" fill="#2f5f8f" stroke="#5fa8e0" stroke-width="1.2"/>
@@ -104,7 +106,7 @@
 <circle cx="479.0" cy="102.0" r="7" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
 <text x="479.0" y="104.7" text-anchor="middle" font-size="7.5" fill="#1b1b1b" font-weight="bold">11</text>
 <rect x="14.0" y="130" width="31.0" height="31" rx="4" fill="#333333" stroke="#555555" stroke-width="1.2"/>
-<text x="29.5" y="148.5" text-anchor="middle" font-size="6.3" fill="#777777">ctrl</text>
+<text x="29.5" y="148.5" text-anchor="middle" font-size="8.5" fill="#777777">ctrl</text>
 <rect x="48.0" y="130" width="31.0" height="31" rx="4" fill="#333333" stroke="#555555" stroke-width="1.2"/>
 <text x="63.5" y="148.5" text-anchor="middle" font-size="8.5" fill="#777777">opt</text>
 <rect x="82.0" y="130" width="31.0" height="31" rx="4" fill="#333333" stroke="#555555" stroke-width="1.2"/>
@@ -142,60 +144,63 @@
 <circle cx="445.0" cy="138.0" r="7" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
 <text x="445.0" y="140.7" text-anchor="middle" font-size="7.5" fill="#1b1b1b" font-weight="bold">2</text>
 <rect x="456.0" y="130" width="31.0" height="31" rx="4" fill="#6a3f8a" stroke="#c090e0" stroke-width="1.2"/>
-<text x="471.5" y="148.5" text-anchor="middle" font-size="6.3" fill="#ffffff">space</text>
+<text x="471.5" y="148.5" text-anchor="middle" font-size="8.5" fill="#ffffff">space</text>
 <circle cx="479.0" cy="138.0" r="7" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
 <text x="479.0" y="140.7" text-anchor="middle" font-size="7.5" fill="#1b1b1b" font-weight="bold">12</text>
-<text x="14" y="172" font-size="9" fill="#aaaaaa">Note keys assign a pitch to the selected step (cursor auto-advances).</text>
-<text x="14" y="194" font-size="9.5" fill="#8fd6ff" font-weight="bold">凡例 / Legend</text>
+<text x="14" y="172" font-size="9" fill="#aaaaaa">Note keys assign a note to the selected step (the cursor advances automatically).</text>
+<text x="14" y="194" font-size="9.5" fill="#8fd6ff" font-weight="bold">Legend</text>
 <rect x="14.0" y="205" width="12" height="12" rx="2" fill="#2f5f8f" stroke="#888" stroke-width="1"/>
-<text x="30.0" y="214" font-size="8.5" fill="#dddddd">Note keys (assign pitch to step)</text>
+<text x="30.0" y="214" font-size="8.5" fill="#dddddd">Note keys (assign a note to a step)</text>
 <rect x="14.0" y="221" width="12" height="12" rx="2" fill="#3f7a3f" stroke="#888" stroke-width="1"/>
-<text x="30.0" y="230" font-size="8.5" fill="#dddddd">Move / Adjust (Cursor/Value/Volume)</text>
+<text x="30.0" y="230" font-size="8.5" fill="#dddddd">Move/Adjust (Cursor/Adjust/Volume)</text>
 <rect x="14.0" y="237" width="12" height="12" rx="2" fill="#a03050" stroke="#888" stroke-width="1"/>
 <text x="30.0" y="246" font-size="8.5" fill="#dddddd">Edit (Field/Focus/Select/Copy, etc.)</text>
 <rect x="14.0" y="253" width="12" height="12" rx="2" fill="#8a5a1f" stroke="#888" stroke-width="1"/>
-<text x="30.0" y="262" font-size="8.5" fill="#dddddd">Toggle / Special (Clear/Shift/Space/Help)</text>
+<text x="30.0" y="262" font-size="8.5" fill="#dddddd">Toggle/Special (Clear/Shift/Space/Help)</text>
 <circle cx="20.0" cy="275" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
 <text x="20.0" y="277.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">1</text>
-<text x="30.0" y="278" font-size="8.5" fill="#dddddd">Step cursor left</text>
+<text x="30.0" y="278" font-size="8.5" fill="#dddddd">Step cursor &lt;-</text>
 <circle cx="20.0" cy="291" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
 <text x="20.0" y="293.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">2</text>
-<text x="30.0" y="294" font-size="8.5" fill="#dddddd">Step cursor right</text>
+<text x="30.0" y="294" font-size="8.5" fill="#dddddd">Step cursor -&gt;</text>
 <circle cx="20.0" cy="307" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
 <text x="20.0" y="309.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">3</text>
-<text x="30.0" y="310" font-size="8.5" fill="#dddddd">;/. : adjust selected value</text>
+<text x="30.0" y="310" font-size="8.5" fill="#dddddd">;/. : adjust value</text>
 <circle cx="20.0" cy="323" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
 <text x="20.0" y="325.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">4</text>
 <text x="30.0" y="326" font-size="8.5" fill="#dddddd">g: cycle edit field</text>
 <circle cx="20.0" cy="339" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
 <text x="20.0" y="341.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">5</text>
-<text x="30.0" y="342" font-size="8.5" fill="#dddddd">f: toggle focus (Step &lt;-&gt; Pattern)</text>
-<circle cx="251.0" cy="211" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
-<text x="251.0" y="213.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">6</text>
-<text x="261.0" y="214" font-size="8.5" fill="#dddddd">Bksp: clear step / Shift+Bksp: clear all</text>
-<circle cx="251.0" cy="227" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
-<text x="251.0" y="229.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">7</text>
-<text x="261.0" y="230" font-size="8.5" fill="#dddddd">V: mark/confirm/clear selection</text>
-<circle cx="251.0" cy="243" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
-<text x="251.0" y="245.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">8</text>
-<text x="261.0" y="246" font-size="8.5" fill="#dddddd">Aa (Shift): used for Shift+C/X</text>
-<circle cx="251.0" cy="259" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
-<text x="251.0" y="261.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">9</text>
-<text x="261.0" y="262" font-size="8.5" fill="#dddddd">Shift+C: Copy</text>
-<circle cx="251.0" cy="275" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
-<text x="251.0" y="277.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">10</text>
-<text x="261.0" y="278" font-size="8.5" fill="#dddddd">Shift+X: Cut</text>
-<circle cx="251.0" cy="291" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
-<text x="251.0" y="293.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">11</text>
-<text x="261.0" y="294" font-size="8.5" fill="#dddddd">Enter: Paste</text>
-<circle cx="251.0" cy="307" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
-<text x="251.0" y="309.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">12</text>
-<text x="261.0" y="310" font-size="8.5" fill="#dddddd">Space: Play/Stop</text>
-<circle cx="251.0" cy="323" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
-<text x="251.0" y="325.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">13</text>
-<text x="261.0" y="326" font-size="8.5" fill="#dddddd">k/l: Volume down/up</text>
-<circle cx="251.0" cy="339" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
-<text x="251.0" y="341.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">14</text>
-<text x="261.0" y="342" font-size="8.5" fill="#dddddd">Show Help (hold)</text>
-<text x="14" y="372" font-size="8" fill="#888888">G0 button (short press): PLAY&lt;-&gt;SEQ -- not on the keyboard</text>
+<text x="30.0" y="342" font-size="8.5" fill="#dddddd">f: switch focus (Step/Pattern)</text>
+<circle cx="292.0" cy="203.0" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
+<text x="292.0" y="205.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">6</text>
+<text x="302.0" y="206.0" font-size="8.5" fill="#dddddd">Bksp: clear / Shift+Bksp: clear all</text>
+<circle cx="292.0" cy="218.0" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
+<text x="292.0" y="220.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">7</text>
+<text x="302.0" y="221.0" font-size="8.5" fill="#dddddd">V: select range start/confirm/cancel</text>
+<circle cx="292.0" cy="233.0" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
+<text x="292.0" y="235.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">8</text>
+<text x="302.0" y="236.0" font-size="8.5" fill="#dddddd">Aa (Shift): used for Shift+C/X etc.</text>
+<circle cx="292.0" cy="248.0" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
+<text x="292.0" y="250.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">9</text>
+<text x="302.0" y="251.0" font-size="8.5" fill="#dddddd">Shift+C: copy</text>
+<circle cx="292.0" cy="263.0" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
+<text x="292.0" y="265.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">10</text>
+<text x="302.0" y="266.0" font-size="8.5" fill="#dddddd">Shift+X: cut</text>
+<circle cx="292.0" cy="278.0" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
+<text x="292.0" y="280.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">11</text>
+<text x="302.0" y="281.0" font-size="8.5" fill="#dddddd">Enter: paste / Shift+Enter: Tap Tempo</text>
+<circle cx="292.0" cy="293.0" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
+<text x="292.0" y="295.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">12</text>
+<text x="302.0" y="296.0" font-size="8.5" fill="#dddddd">Space: play/stop</text>
+<circle cx="292.0" cy="308.0" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
+<text x="292.0" y="310.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">13</text>
+<text x="302.0" y="311.0" font-size="8.5" fill="#dddddd">k/l: volume -/+</text>
+<circle cx="292.0" cy="323.0" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
+<text x="292.0" y="325.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">14</text>
+<text x="302.0" y="326.0" font-size="8.5" fill="#dddddd">Show Help (hold) / Shift+H: latch it on</text>
+<circle cx="292.0" cy="339.0" r="6" fill="#ffcc33" stroke="#1b1b1b" stroke-width="1"/>
+<text x="292.0" y="341.5" text-anchor="middle" font-size="6.5" fill="#1b1b1b" font-weight="bold">15</text>
+<text x="302.0" y="342.0" font-size="8.5" fill="#dddddd">Tab: next menu / Shift+Tab: previous</text>
+<text x="14" y="364" font-size="8" fill="#888888">G0 (short press): switch PLAY/SEQ / G0 (long press): enter Song mode. *Not on the keyboard</text>
 </svg>
