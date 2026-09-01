@@ -13,8 +13,83 @@ Thank you so much to everyone who's shown interest in this project!
 
 ---
 
+## 🎉 v1.0 Official Release
+
+From v0.9 to this v1.0 release, development has focused on both broadening the range of sounds you can build and expanding how you can perform with them.
+
+### Documentation
+
+New to C.P.S.? Start with the **Quick Start Guide**. Looking up a specific feature? Check the **Reference Guide**. Both are available in Japanese and English, as Markdown and PDF.
+
+| Guide | Japanese | English |
+|---|---|---|
+| Quick Start Guide | [Markdown](docs/QuickStart_ja.md) / [PDF](docs/QuickStart_ja.pdf) | [Markdown](docs/QuickStart_en.md) / [PDF](docs/QuickStart_en.pdf) |
+| Reference Guide | [Markdown](docs/Reference_ja.md) / [PDF](docs/Reference_ja.pdf) | [Markdown](docs/Reference_en.md) / [PDF](docs/Reference_en.pdf) |
+
+### Patch Pack
+
+To get you playing right away, 10 factory patches are available in the [`Patch`](Patch) folder. Copy them into the `/CPS/Patch/` folder on your SD card to use them.
+
+### Waveform library expanded (6 -> 12)
+
+Alongside Sine / Triangle / Sawtooth / Square / Wavefolder / HalfSine, six new waveforms have been added: **Parabolic, ESaw, Squeeze, ESquare, Saw2, and Square2.** All are band-limited (anti-aliased).
+
+### Shape (absorbs and extends the old PWM)
+
+The PWM parameter has been redesigned as **Shape**, now supported across all 12 waveforms. It reshapes the sound continuously in a way that's specific to each waveform (duty cycle for square waves, ramp slope for sawtooth waves, and so on).
+
+### Morphing
+
+Register up to **10 patches into Morph slots** and switch between them instantly — or smoothly, over a set amount of time — with `Shift+1` through `Shift+0`.
+
+### New FX tab (6 effects)
+
+A new **FX** tab joins VCO/VCF/VCA/LFO. Select a pad and press `Enter` to toggle it on/off — stack as many effects together as you like.
+
+| Effect | Description |
+|---|---|
+| Ring Modulator | Ring modulation |
+| Soft Limiter | Soft limiting / saturation |
+| Chorus | Chorus |
+| Delay | Delay / echo |
+| Reverb | Reverb |
+| Bitcrush | Bit-crusher (moved here from being IMU-only) |
+
+Ring Mod, Soft Limiter, Chorus, Delay, and Reverb can all be modulated via IMU/LFO.
+
+### MIDI support
+
+Connect to external MIDI gear via a separately sold serial MIDI unit (M5Stack Unit Midi). Supports notes, pitch bend, sustain pedal, mod wheel, Program Change, and MIDI Clock sync.
+
+### Theremin (distance sensor) support
+
+Connect a separately sold distance sensor (ToF) unit (M5Stack Unit ToF4M) for theremin-style, non-contact playing by moving your hand through the air.
+
+### Tap Tempo
+
+`Shift+Enter` lets you set the ARP/SEQ tempo on the fly while playing.
+
+### Improved Help
+
+Hold `H` to show the key commands available on the current screen; `Shift+H` latches the overlay in place.
+
+### ARP, Portamento, and Bend decoupled from patches
+
+These are now treated as performance-style settings rather than tone settings — they're unaffected by switching patches or by Randomize, and live as device-level settings instead.
+
+### Automatic keyboard recovery
+
+The Cardputer ADV's keyboard chip (TCA8418) has a known hardware quirk where fast key-presses can occasionally cause input to stop responding entirely (other engineers working with the same chip have reported the same behavior independently). C.P.S. now **detects this automatically and restarts on its own within about 30 seconds** to recover.
+
+### Drift (a bonus feature)
+
+With Pro Style active, SETTING > Play Mode now offers **Drift**. It's a playful recreation of the instability old analog synths had — pitch wanders slightly, the filter breathes, and volume creeps, each independently. The on-screen knobs themselves don't move; only the sound does. Turning it on shows a note about it on screen.
+
+---
+
 ## 🆕 v0.9 Update
 
+v0.9 opens up a whole new way to enjoy CPS beyond just playing live — building and listening to arrangements.
 v0.9 opens up a whole new way to enjoy CPS beyond just playing live — building and listening to arrangements.
 
 - **Added a Scale system**: in Pro Mode, choose from 49 scales across 9 categories (Chromatic / Classical / Symmetrical / Pentatonic / Japan / China / India / Middle East / Europe) via a 2-level picker, with live preview while you play
@@ -62,39 +137,48 @@ v0.7 significantly expanded the sound-editing capabilities.
 
 | Category | Details |
 |---|---|
-| **Oscillator** | Real-time wavetable synthesis: Sine → Triangle → Sawtooth → Square (morphable), with PWM |
+| **Oscillator** | Real-time wavetable synthesis, **12 waveforms** (Sine / Triangle / Sawtooth / Square / Wavefolder / HalfSine / Parabolic / ESaw / Squeeze / ESquare / Saw2 / Square2). Choose up to 6 to morph between |
+| **Shape** | Continuously reshapes the waveform in a way specific to each one (duty cycle on square waves, ramp slope on sawtooth, etc.). Supported on all 12 waveforms |
+| **Second oscillator (Osc2)** | An independent oscillator — its own waveform, octave, and detune — blended with the main one |
 | **Sub oscillator** | -1oct / -2oct, adjustable level |
 | **Noise** | Noise blend (adjustable level) |
-| **Keyboard (EZ Mode)** | `1234567890-=` + Backspace mapped to a 13-note diatonic scale (C4-A5); monophonic (last key wins) |
-| **Keyboard (Pro Mode)** | Two physical rows, each a complete chromatic octave including black keys (`1234567890-=`+Backspace = C4-C5, `qwertyuiop[]\` = C3-C4). **49 selectable scales** |
+| **Keyboard (EZ Mode)** | `1234567890-=` + Backspace mapped to a 13-note diatonic scale; monophonic (single voice) |
+| **Keyboard (Pro Mode)** | Two physical rows, each a complete chromatic octave including black keys. **49 selectable scales** |
 | **Octave** | `;` / `.` keys shift ±2 octaves (`J`/`N` on original Cardputer) |
 | **Transpose** | `,` / `/` keys shift ±12 semitones (`B`/`M` on original Cardputer) |
-| **Volume** | `k` / `l` keys adjust in 5% steps (works on almost every screen except Patch Bank) |
-| **Bend** | `Z` key = bend down, `X` key = bend up — guitar-choke feel with asymmetric attack/release |
+| **Volume** | `k` / `l` keys adjust in 1% steps, hold to accelerate (works on almost every screen except Patch Bank) |
+| **Bend** | `Z` key = bend down, `X` key = bend up — guitar-choke feel with asymmetric attack/release. A device-level setting, not saved with the patch |
 | **ADSR** | Full Attack/Decay/Sustain/Release envelope with retrigger support |
-| **Biquad Filter** | LPF / HPF / BPF / Notch / None (bypass); configurable cutoff (100–8000Hz), Q, and key tracking |
+| **Biquad Filter** | LPF / HPF / BPF / Notch / None (bypass); configurable cutoff, Q, and key tracking |
 | **Filter envelope** | Dedicated Depth/Attack/Decay/Sustain/Release envelope for the filter cutoff |
-| **General-purpose LFO** | Sine/Triangle/Sawtooth/Square, Rate 0.1–20Hz, Depth 0–100%. Modulates Pitch, Volume, Timbre, Filter, or PWM |
-| **Bit-crusher** | Lo-Fi effect: reduces bit depth from 16-bit down to ~3-bit |
-| **Vibrato / Tremolo** | LFO-driven pitch/volume modulation (independent of the general-purpose LFO) |
-| **Portamento** | ON/OFF, adjustable glide speed, with its own dedicated reset |
-| **Arpeggiator** (ADV only) | Up to 6-note chord hold. UP/DOWN/UP-DOWN/AS PLAYED/RANDOM, adjustable Tempo/Rate/Swing, Latch mode |
+| **General-purpose LFO** | Sine/Triangle/Sawtooth/Square/Sample & Hold, Rate 0.1-20Hz, Depth 0-100%. Modulates pitch, volume, Shape, filter cutoff, and a wide range of FX parameters |
+| **FX (6 effects)** | A dedicated tab for stacking Ring Modulator, Soft Limiter, Chorus, Delay, Reverb, and Bitcrush together. Several support IMU/LFO modulation |
+| **Vibrato / Tremolo** | Periodic pitch/volume modulation |
+| **Portamento** | ON/OFF, adjustable glide speed. A device-level setting, not saved with the patch, with its own dedicated reset |
+| **Morphing** | Register up to 10 patches into Morph slots and recall them instantly (or smoothly, over time) with `Shift+1` through `Shift+0` |
+| **Arpeggiator** (ADV only) | Up to 6-note chord hold. UP/DOWN/UP-DOWN/AS PLAYED/RANDOM, adjustable Tempo/Rate/Swing (1-unit steps, hold to accelerate), Latch mode. A device-level setting, not saved with the patch |
 | **Step Sequencer (SEQ mode)** | 16-step, TB-303-style. Tie/Slide/Accent per step, with Copy/Cut/Paste |
 | **Pattern Bank** | Save/load sequences across 8 banks x 8 slots, plus Random Pattern generation |
 | **Song mode** | Arrange saved patterns into a song, with independent Transpose/Repeat per entry |
-| **IMU / PAD mapping** | 17 assignable targets; Sensitivity, axis Invert, response Curve, Deadzone, and Calibration adjustable per axis (Deadzone/Calibration unavailable on original Cardputer) |
-| **Patch Bank** | Save/recall every parameter as a named patch. Rename, duplicate, delete, reset, and randomize supported |
+| **Tap Tempo** | `Shift+Enter` sets the ARP/SEQ tempo on the fly while playing |
+| **MIDI** | Connect to external MIDI gear via a separately sold serial MIDI unit (M5Stack Unit Midi). Supports notes, pitch bend, sustain pedal, mod wheel, Program Change, and MIDI Clock sync |
+| **Theremin (distance sensor)** | Connect a separately sold distance sensor (ToF) unit (M5Stack Unit ToF4M) for theremin-style, non-contact playing. Smooth or Semitone pitch modes |
+| **Help** | Hold `H` to show the key commands for the current screen; `Shift+H` latches it in place |
+| **IMU / PAD mapping** | A wide range of assignable targets; Sensitivity, axis Invert, response Curve, Deadzone, and Calibration adjustable per axis (Deadzone/Calibration unavailable on original Cardputer) |
+| **Patch Bank** | Save/recall tone-related parameters as a named patch. Rename, duplicate, delete, reset, and randomize supported |
 | **Play Mode** | EZ Mode (diatonic) / Pro Mode (chromatic, scale-selectable), switchable from the SETTING menu |
+| **Automatic keyboard recovery** | If input stops responding due to a known hardware quirk in the Cardputer ADV's keyboard chip, C.P.S. detects it and restarts on its own within about 30 seconds |
 | **SD settings** | Current settings auto-save to `/CPS/settings.json` |
 
-### IMU / PAD assignable targets (17)
+### IMU / PAD assignable targets
 
-`TIMBRE` · `VIBRATO_DEPTH` · `VIBRATO_RATE` · `TREMOLO` · `VOLUME` · `PITCH_BEND` · `BEND_UP` · `BEND_DOWN` · `BITCRUSH` · `FILTER_CUTOFF` · `PWM` · `DETUNE` · `NOISE` · `SUB_LEVEL` · `RESONANCE` · `LFO_RATE` · `LFO_DEPTH` (+ `NONE`)
+`TIMBRE` · `VIBRATO_DEPTH` · `VIBRATO_RATE` · `TREMOLO` · `VOLUME` · `PITCH_BEND` · `BEND_UP` · `BEND_DOWN` · `BITCRUSH` · `FILTER_CUTOFF` · `SHAPE` (formerly PWM) · `DETUNE` · `NOISE` · `SUB_LEVEL` · `RESONANCE` · `LFO_RATE` · `LFO_DEPTH` · `RING_MOD_RATE` · `RING_MOD_MIX` · `LIMITER_DRIVE` · `CHORUS_DEPTH` · `CHORUS_MIX` · `DELAY_FEEDBACK` · `DELAY_MIX` · `REVERB_ROOM` · `REVERB_MIX` (+ `NONE`)
 
 - **PITCH_BEND** — bipolar: tilt direction (or PAD press direction) controls bend direction
 - **BEND_UP / BEND_DOWN** — absolute: always raises / lowers pitch
 - **VOLUME** — a relative multiplier (0-100%) of the current volume; can only attenuate, never exceeds the set level
 - **ArpTempo / ArpSwing** — controls the Arpeggiator's Tempo/Swing while PLAY is active, or the Sequencer's own Tempo/Swing while SEQ is active — the same axis assignment automatically applies to whichever is relevant
+- **FX targets (Ring Mod / Limiter / Chorus / Delay / Reverb)** — disabled whenever the corresponding effect's Mix is 0 (off). Chorus Rate and Delay Time are excluded from modulation for sound-quality reasons
 
 ---
 
@@ -199,32 +283,39 @@ If no SD card is present the app still runs with default settings.
 
 | Key | Action |
 |---|---|
-| Note keys | Play notes (layout differs by EZ/Pro Mode — see Features above) |
+| Note keys | Play notes (layout differs by EZ/Pro Mode — see Features above). Monophonic (single voice) — pressing multiple keys is mainly used to specify a chord for Arp |
 | `;` / `.` (ADV), `J`/`N` (original) | Octave up / down (±2 octaves) |
 | `,` / `/` (ADV), `B`/`M` (original) | Transpose down / up (±12 semitones) |
-| `k` / `l` | Volume down / up |
+| `k` / `l` | Volume down / up (1% steps, hold to accelerate) |
 | `Z` | Bend down (hold) |
 | `X` | Bend up (hold) |
 | `C` | Toggle portamento ON/OFF |
 | `A` | Toggle IMU/PAD X-axis hold ON/OFF |
 | `S` | Toggle IMU/PAD Y-axis hold ON/OFF |
+| `Shift+A` | Enable/disable the IMU X-axis itself (ADV only) |
+| `Shift+S` | Enable/disable the IMU Y-axis itself (ADV only) |
 | `D` | Toggle note hold ON/OFF |
 | `V` | Toggle Arp Latch ON/OFF (ADV only) |
 | `Shift+V` | Toggle the Arpeggiator ON/OFF (ADV only, works from any screen) |
+| `Shift+1` through `Shift+0` | Switch to Morph slot 1-10 |
+| `Shift+Enter` | Tap Tempo |
 | `Space` | Play/Stop the Sequencer's pattern (works even outside the SEQ screen) |
 | `H` (hold) | Show help overlay |
+| `Shift+H` | Latch the help overlay in place; press again to release |
 | Tilt device (ADV) / `;`/`.`/`,`/`/` for PAD (original) | Controls whichever parameters are assigned to the IMU/PAD X/Y axes |
 
 The PLAY screen shows the current note name/frequency, octave/transpose/portamento/note-hold state, a bend meter, IMU/PAD status, and the IMU/PAD X/Y target names with their current values — appending **(HOLD)** whenever that axis is held. While the Arpeggiator is on, every held note is listed instead.
 
 ### VCO screen
 
-Left column: Timbre · PWM · Detune · FineTune　　Right column: Sub Lvl · Sub Oct · Noise
+Osc (waveform) · Timbre · Shape · Detune · FineTune · Vibrato Depth/Rate · Sub Level/Octave · Noise · Osc2 Mix (including waveform/octave/detune)
 
 | Key | Action |
 |---|---|
 | `;` / `.` | Select previous / next item |
 | `,` / `/` | Decrease / increase value |
+
+Choose from 12 waveforms (Sine / Triangle / Sawtooth / Square / Wavefolder / HalfSine / Parabolic / ESaw / Squeeze / ESquare / Saw2 / Square2), and use Shape to continuously reshape the tone. Timbre sets your position within the Morph chain (up to 6 waveforms) configured under SETTING > Patch > Morph.
 
 ### VCF screen
 
@@ -259,6 +350,28 @@ Wave · Rate (0.1–20 Hz) · Depth (0–100%) · Target (modulation destination
 
 The top of the screen shows the LFO waveform along with a live marker tracking its current phase.
 
+### FX screen
+
+A dedicated tab for stacking multiple effects together — 6 pads arranged 2 rows x 3 columns.
+
+| Key | Action |
+|---|---|
+| `,` / `/` | Select a pad |
+| `Enter` | Toggle the selected effect ON/OFF |
+| `.` | Open the selected effect's own parameter screen |
+| `Tab` (from a parameter screen) | Return to the pad selector |
+
+| Effect | Parameters |
+|---|---|
+| Ring Modulator | Rate, Mix |
+| Soft Limiter | Drive, Mix |
+| Chorus | Rate, Depth, Mix |
+| Delay | Time, Feedback, Mix |
+| Reverb | Room, Damping, Mix |
+| Bitcrush | Amount |
+
+Setting any effect's Mix to 0 turns it off. Once turned off, its previous Mix level is remembered for the rest of the session and restored when you turn it back on (forgotten on power-off).
+
 ### SEQ screen (Step Sequencer)
 
 Toggle here from PLAY with a quick tap of `G0`. A 16-step, TB-303-style sequencer where each step can carry a pitch/velocity plus Tie (extend the previous note), Slide, and Accent.
@@ -279,14 +392,17 @@ Toggle here from PLAY with a quick tap of `G0`. A 16-step, TB-303-style sequence
 | `Shift+X` | Cut the selection |
 | `Enter` | Paste at the cursor |
 | `Space` | Play/Stop the pattern |
-| `k` / `l` | Volume down / up |
+| `k` / `l` | Volume down / up (1% steps, hold to accelerate) |
+| `Shift+Enter` | Tap Tempo |
+| `Tab` / `Shift+Tab` | Cycle menus forward / backward |
 | `H` (hold) | Show help overlay |
+| `Shift+H` | Latch the help overlay in place; press again to release |
 
 On the step grid, velocity is shown as bar height, and a run of Tie-connected steps merges into one shape with a thick outline. Accented steps turn red.
 
 ### SETTING screen
 
-Entry points: Patch / Pattern / IMU (PAD on original) / Bend / Portamento / Play Mode / Arp (ADV only). **Patch/IMU/Bend/Portamento show up from either PLAY or SEQ; Pattern only shows up when SEQ is the active home mode, and Arp only when PLAY is.**
+Entry points: Patch / Pattern / IMU (PAD on original) / Bend / Portamento / Play Mode / Arp (ADV only) / MIDI / MIDI Out / MIDI In / Theremin / Screen. **Patch/IMU/Bend/Portamento/the MIDI screens/Screen/Theremin show up from either PLAY or SEQ; Pattern only shows up when SEQ is the active home mode, and Arp only when PLAY is.**
 
 | Key | Action |
 |---|---|
@@ -296,7 +412,11 @@ Entry points: Patch / Pattern / IMU (PAD on original) / Bend / Portamento / Play
 
 #### Patch sub-menu
 
-Save · Load · Reset (tone reset) · Random (tone randomize). Both Reset and Random are behind a confirmation dialog.
+Save · Load · Reset (tone reset) · Random (tone randomize) · Morph (Morph slot configuration). Both Reset and Random are behind a confirmation dialog.
+
+Reset, after a confirmation screen, puts VCO, VCF, VCA, LFO, and IMU settings back to their defaults (Bend, Portamento, and Arp are excluded, since they're managed separately from patches — each has its own dedicated Reset instead).
+
+Morph lets you assign up to 10 patches to Morph slots, recalled with `Shift+1` through `Shift+0`. Setting Morph Time to something other than 0 makes switching gradual rather than instant.
 
 #### Pattern sub-menu
 
@@ -306,15 +426,15 @@ Save · Load · Random (pattern randomize). Random draws from the currently acti
 
 Target · Sensitivity · Invert · Curve · Deadzone (hidden on original Cardputer) per axis, plus Calibrate (ON/OFF toggle, ADV only).
 
-Target selection opens a scrollable picker via `/`, with category divider lines (Pitch/Volume/Timbre/Filter/LFO/Effect); `;`/`.` to scroll, `/` or Enter to confirm.
+Target selection opens a scrollable picker via `/`, with category divider lines; `;`/`.` to scroll, `/` or Enter to confirm. See "IMU / PAD assignable targets" above for the full list.
 
 #### Bend sub-menu
 
-Bend width · attack · release · Reset.
+Bend width · attack · release · Reset. A device-level setting, not saved with the patch.
 
 #### Portamento sub-menu
 
-ON/OFF · speed · Reset.
+ON/OFF · speed · Reset. A device-level setting, not saved with the patch.
 
 #### Play Mode sub-menu
 
@@ -322,7 +442,19 @@ Toggle between EZ Mode and Pro Mode; when in Pro Mode, also select a scale (49 s
 
 #### Arp sub-menu (ADV only)
 
-Type (UP/DOWN/UP-DOWN/AS PLAYED/RANDOM) · Tempo · Rate · Swing. The On/Off toggle itself lives on `Shift+V` (works from any screen) rather than in this menu.
+Type (UP/DOWN/UP-DOWN/AS PLAYED/RANDOM) · Tempo · Rate · Swing (Tempo/Swing in 1-unit steps, hold to accelerate). The On/Off toggle itself lives on `Shift+V` (works from any screen) rather than in this menu. A device-level setting, not saved with the patch.
+
+#### MIDI / MIDI Out / MIDI In sub-menus
+
+Settings for connecting to external MIDI gear, split across three screens: general settings, send settings, and receive settings. See the Reference Guide for full details.
+
+#### Theremin sub-menu
+
+Settings for non-contact playing using a separately sold distance sensor (ToF) unit (M5Stack Unit ToF4M) — connection method (Grove / LoRa Cap-shared), pitch mapping mode (Smooth / Semitone), and pitch range (Top / Span). See the Reference Guide for full details.
+
+#### Screen sub-menu
+
+UI theme (5 options), screen brightness, and other display settings.
 
 ### Patch Bank screen
 
@@ -372,6 +504,8 @@ Enter with a long press of `G0`. Arrange saved patterns into a full song and pla
 | `Shift+S` / `Shift+L` | Save / Load the song |
 | `k` / `l` | Volume down / up |
 | `Tab` | Return to whichever of PLAY/SEQ was active |
+| `H` (hold) | Show help overlay |
+| `Shift+H` | Latch the help overlay in place; press again to release |
 
 Entries appear as a horizontal timeline of blocks color-coded by bank letter (the bar beneath each block shows its Repeat count), with a small preview grid showing the shape of whichever pattern is playing (or selected, while stopped). Transpose is chromatic (semitone-based) and independent per entry. Songs save under `/CPS/Song/` by number (1–8).
 
@@ -387,19 +521,24 @@ Auto-detected at boot; the following differ from CardputerADV:
 - **Arpeggiator is not supported**: it needs multi-key chord holding, which the original's 3-key rollover limit can't reliably support
 - **Step Sequencer, Pattern Bank, and Song mode all work on both boards**: entering one note per step doesn't need key rollover, so these aren't affected by the 3-key limit
 - **3-key rollover limit**: due to hardware constraints, pressing a 4th key at the same time may cause key ghosting
+- **On the automatic keyboard recovery feature**: the known quirk it addresses is specific to the Cardputer ADV's keyboard chip (TCA8418, I2C-connected). The original Cardputer reads its keyboard a different way and isn't affected by this particular issue
 
 ---
 
 ## Signal path
 
 ```
-Oscillator (wavetable morph)
+Oscillator (wavetable morph, Shape)
     │
+    ├── Second oscillator (Osc2)
     ├── Sub oscillator (-1/-2 oct)
     ├── Noise blend
     │
     ▼
-Bit-crusher
+Ring Modulator
+    │
+    ▼
+Bitcrush
     │
     ▼
 Biquad Filter  ◄── Filter envelope / Filter key tracking / IMU(PAD) / General LFO (Filter)
@@ -414,10 +553,24 @@ Tremolo (LFO × depth)
 ADSR Envelope
     │
     ▼
+Chorus
+    │
+    ▼
+Delay
+    │
+    ▼
+Reverb
+    │
+    ▼
+Soft Limiter
+    │
+    ▼
 Speaker (I2S)
 ```
 
 Pitch modulation (vibrato LFO + IMU(PAD) bend + key bend + General LFO (Pitch)) is applied to the oscillator phase increment before sample generation. In SEQ/Song mode, this same path is driven by the Sequencer's own timing engine.
+
+Chorus, Delay, and Reverb keep processing for a short time after a note ends (up to about 8 seconds) so their natural tail continues to ring out rather than cutting off abruptly.
 
 ---
 
@@ -449,10 +602,12 @@ Managed automatically by PlatformIO:
 
 ## Known limitations / future ideas
 
-- Monophonic only (last note wins); polyphony is not planned
+- Monophonic only (single voice); polyphony is not planned
 - Original Cardputer support hasn't been verified on real hardware by the developer yet (bug reports/feedback welcome)
 - Display is 240×135 px; layout is tight
-- v1.0: still under consideration
+- The Cardputer ADV's keyboard chip (TCA8418) has a known hardware quirk where fast key-presses can cause input to stop responding. Automatic detection and recovery mitigate this, but don't fix the underlying cause (see the Reference Guide's Troubleshooting section for details)
+- Theremin support with Grove-expansion units other than LoRa Cap is untested
+- What comes after v1.0 is still under consideration
 
 ---
 

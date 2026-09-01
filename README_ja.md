@@ -13,6 +13,80 @@ Redditや私の[Twitter(X)アカウント](https://x.com/Tokagetchi)で開発状
 
 ---
 
+## 🎉 v1.0 正式リリース
+
+v0.9から今回のv1.0まで、音作りの幅と演奏表現の両方を大きく広げる開発を重ねてきました。
+
+### 取扱説明書
+
+初めての方は**クイックスタートガイド**、機能の詳細を調べたいときは**リファレンスガイド**をご覧ください。日本語・英語、Markdown・PDFをご用意しています。
+
+| ガイド | 日本語 | English |
+|---|---|---|
+| クイックスタートガイド | [Markdown](docs/QuickStart_ja.md) ／ [PDF](docs/QuickStart_ja.pdf) | [Markdown](docs/QuickStart_en.md) ／ [PDF](docs/QuickStart_en.pdf) |
+| リファレンスガイド | [Markdown](docs/Reference_ja.md) ／ [PDF](docs/Reference_ja.pdf) | [Markdown](docs/Reference_en.md) ／ [PDF](docs/Reference_en.pdf) |
+
+### パッチパック
+
+すぐに演奏を楽しんでいただけるよう、10種類のファクトリーパッチを [`Patch`](Patch) フォルダで配布しています。SDカードの `/CPS/Patch/` フォルダにコピーしてお使いください。
+
+### 波形ライブラリの拡張（6種 → 12種）
+
+Sine / Triangle / Sawtooth / Square / Wavefolder / HalfSine に加え、**Parabolic・ESaw・Squeeze・ESquare・Saw2・Square2** の6波形を新たに追加しました。すべて帯域制限（エイリアシング対策）済みです。
+
+### Shape（旧PWMを吸収・拡張）
+
+PWMパラメータを**Shape**として再設計し、全12波形に対応させました。波形ごとに異なる形で音色を連続的に変化させます（矩形波はデューティ比、鋸歯波は傾きなど）。
+
+### モーフィング機能
+
+最大**10個のパッチをモーフスロットに登録**し、`Shift+1`〜`Shift+0`で瞬時に、あるいは指定した時間をかけてなめらかに切り替えられるようになりました。
+
+### FXタブの新設（6エフェクト）
+
+VCO/VCF/VCA/LFOに続く新タブとして、**FX**を追加しました。パッドを選んで`Enter`でON/OFF、複数エフェクトを自由に重ねてかけられます。
+
+| エフェクト | 内容 |
+|---|---|
+| Ring Modulator | リングモジュレーター |
+| Soft Limiter | ソフトリミッター／サチュレーション |
+| Chorus | コーラス |
+| Delay | ディレイ／エコー |
+| Reverb | リバーブ |
+| Bitcrush | ビットクラッシャー（旧IMU専用機能をFXタブへ統合） |
+
+Ring Mod・Soft Limiter・Chorus・Delay・ReverbはIMU/LFOでの変調にも対応しています。
+
+### MIDI対応
+
+別売りのシリアルMIDIユニット（M5Stack Unit Midi）経由で、外部MIDI機器と接続できるようになりました。ノート・ピッチベンド・サステインペダル・モジュレーションホイール・Program Change・MIDIクロック同期などに対応しています。
+
+### テルミン（距離センサー）対応
+
+別売りの距離センサー（ToF）ユニット（M5Stack Unit ToF4M）を接続すると、手をかざして音程を操作する、テルミンのような非接触演奏ができます。
+
+### タップテンポ
+
+`Shift+Enter`で、ARP・SEQのテンポを演奏しながら素早く合わせられるようになりました。
+
+### Help機能の強化
+
+`H`キー長押しでその場のキー操作一覧を表示、`Shift+H`で表示をラッチ（固定）できるようになりました。
+
+### ARP・ポルタメント・ベンドをパッチから独立
+
+これらは「音色」ではなく「演奏スタイル」に関わる設定として、パッチの切り替えやRandomizeの影響を受けない、デバイス側の設定に変更しました。
+
+### キーボード自動復帰機能
+
+Cardputer ADVのキーボードチップ（TCA8418）には、高速なキー連打によって稀に入力が完全に反応しなくなる、既知のハードウェア上の癖があります（同チップを扱う他の開発者からも同様の報告があります）。**この状態を自動検知し、最大30秒程度で自動的に再起動して復帰する仕組み**を追加しました。
+
+### Drift（おまけ機能）
+
+Pro Style使用時、SETTING > Play Modeから、**Drift**をONにできます。古いアナログシンセが持っていた「不安定さ」——ピッチがわずかにゆらぎ、フィルターが呼吸するように動き、音量がじわじわ変化する、という現象を、それぞれ独立して再現するお遊び機能です。ノブの表示自体は動かず、音だけが揺れます。ONにすると、その旨の注意書きが画面に表示されます。
+
+---
+
 ## 🆕 v0.9 アップデート情報
 
 v0.9では「弾く」だけでなく「組み立てて聴く」楽しみ方を大きく広げました。
@@ -62,39 +136,48 @@ v0.7では音色エディット機能を大幅に強化しました。
 
 | カテゴリ | 内容 |
 |---|---|
-| **オシレーター** | リアルタイム・ウェーブテーブル方式：Sine → Triangle → Sawtooth → Square（モーフィング可能）、PWM対応 |
+| **オシレーター** | リアルタイム・ウェーブテーブル方式、**12種類の波形**（Sine / Triangle / Sawtooth / Square / Wavefolder / HalfSine / Parabolic / ESaw / Squeeze / ESquare / Saw2 / Square2）。最大6波形を選んでモーフィング可能 |
+| **Shape** | 波形ごとに異なる形で音色を連続的に変化させるパラメータ（矩形波はデューティ比、鋸歯波は傾きなど）。全12波形に対応 |
+| **第2オシレーター（Osc2）** | メインとは独立した波形・オクターブ・デチューンを持つオシレーターをブレンド |
 | **サブオシレーター** | -1oct / -2oct、レベル可変 |
 | **ノイズ** | ノイズブレンド（レベル可変） |
-| **キーボード（EZ Mode）** | `1234567890-=` + Backspaceキーで、C4〜A5の13音ダイアトニック(全音階)スケール。モノフォニック（後着優先） |
-| **キーボード（Pro Mode）** | 2段の物理キーで、それぞれ黒鍵込みの1オクターブ完結クロマチック配列（`1234567890-=`+Backspace = C4〜C5、`qwertyuiop[]\` = C3〜C4）。**49種類のスケール**から選択可能 |
+| **キーボード（EZ Mode）** | `1234567890-=` + Backspaceキーで、13音ダイアトニック(全音階)スケール。モノフォニック（単音） |
+| **キーボード（Pro Mode）** | 2段の物理キーで、それぞれ黒鍵込みの1オクターブ完結クロマチック配列。**49種類のスケール**から選択可能 |
 | **オクターブ** | `;` / `.` キーで ±2オクターブ（オリジナルCardputerは`J`/`N`） |
 | **転調（キー変更）** | `,` / `/` キーで ±12半音（オリジナルCardputerは`B`/`M`） |
-| **音量** | `k` / `l` キーで5%刻みに調整（Patch Bank以外のほぼ全画面で操作可能） |
-| **ベンド** | `Z` キー = ベンドダウン、`X` キー = ベンドアップ（ギターのチョーキングのような非対称アタック/リリース） |
+| **音量** | `k` / `l` キーで1%刻みに調整、長押しで加速（Patch Bank以外のほぼ全画面で操作可能） |
+| **ベンド** | `Z` キー = ベンドダウン、`X` キー = ベンドアップ（ギターのチョーキングのような非対称アタック/リリース）。パッチには保存されないデバイス側の設定 |
 | **ADSR** | フルAttack/Decay/Sustain/Releaseエンベロープ、リトリガー対応 |
-| **Biquadフィルター** | LPF / HPF / BPF / Notch / None（バイパス）。カットオフ(100〜8000Hz)・Q・キートラッキング調整可 |
+| **Biquadフィルター** | LPF / HPF / BPF / Notch / None（バイパス）。カットオフ・Q・キートラッキング調整可 |
 | **フィルターエンベロープ** | フィルターカットオフ専用のDepth/Attack/Decay/Sustain/Releaseエンベロープ |
-| **汎用LFO** | Sine/Triangle/Sawtooth/Square、Rate 0.1〜20Hz、Depth 0〜100%。Pitch/Volume/Timbre/Filter/PWMのいずれかを変調 |
-| **ビットクラッシャー** | 16bitから約3bitまでビット深度を落とすローファイエフェクト |
-| **ビブラート／トレモロ** | LFOによるピッチ／音量変調（汎用LFOとは独立） |
-| **ポルタメント** | ON/OFF、グライド速度調整可。専用の初期化機能付き |
-| **アルペジエーター**（ADVのみ） | 最大6音のコードホールド。UP/DOWN/UP-DOWN/AS PLAYED/RANDOM、Tempo・Rate・Swing調整可、ラッチモード対応 |
+| **汎用LFO** | Sine/Triangle/Sawtooth/Square/Sample & Hold、Rate 0.1〜20Hz、Depth 0〜100%。ピッチ・音量・Shape・フィルターカットオフ・FXの各パラメータなど幅広いターゲットを変調 |
+| **FX（6エフェクト）** | Ring Modulator・Soft Limiter・Chorus・Delay・Reverb・Bitcrushを自由に重ねてかけられる専用タブ。IMU/LFOでの変調にも一部対応 |
+| **ビブラート／トレモロ** | ピッチ／音量への周期的な変調 |
+| **ポルタメント** | ON/OFF、グライド速度調整可。パッチには保存されないデバイス側の設定、専用の初期化機能付き |
+| **モーフィング** | 最大10個のパッチをモーフスロットに登録し、`Shift+1`〜`Shift+0`で瞬時に、または指定時間でなめらかに切り替え |
+| **アルペジエーター**（ADVのみ） | 最大6音のコードホールド。UP/DOWN/UP-DOWN/AS PLAYED/RANDOM、Tempo・Rate・Swing調整可（1刻み・長押しで加速）、ラッチモード対応。パッチには保存されないデバイス側の設定 |
 | **ステップシーケンサー（SEQモード）** | 16ステップのTB-303スタイル。Tie/Slide/Accent対応、コピー＆ペースト機能付き |
 | **Pattern Bank** | シーケンスパターンを8バンク×8スロットに保存/呼び出し。ランダムパターン生成にも対応 |
 | **Songモード** | 保存したパターンを並べて演奏。トランスポーズ・リピート回数を個別設定可能 |
-| **IMU / PAD マッピング** | 17種類のパラメータへ割り当て可能。感度・軸反転・応答カーブ・デッドゾーン・キャリブレーションを軸ごとに調整可（オリジナルCardputerではデッドゾーン・キャリブレーションを除く） |
-| **Patch Bank** | 全パラメータを名前を付けて保存/呼び出し。リネーム・複製・削除・初期化・ランダム生成に対応 |
+| **タップテンポ** | `Shift+Enter`でARP・SEQのテンポを演奏しながら設定 |
+| **MIDI** | 別売りのシリアルMIDIユニット（M5Stack Unit Midi）経由で外部機器と接続。ノート・ピッチベンド・サステインペダル・モジュレーションホイール・Program Change・MIDIクロック同期などに対応 |
+| **テルミン（距離センサー）** | 別売りの距離センサー（ToF）ユニット（M5Stack Unit ToF4M）を接続し、手をかざして音程を操作する非接触演奏。Smooth／Semitoneの2モード |
+| **Help機能** | `H`長押しでその場のキー操作一覧を表示、`Shift+H`でラッチ表示 |
+| **IMU / PAD マッピング** | 幅広いパラメータへ割り当て可能。感度・軸反転・応答カーブ・デッドゾーン・キャリブレーションを軸ごとに調整可（オリジナルCardputerではデッドゾーン・キャリブレーションを除く） |
+| **Patch Bank** | 音色に関わるパラメータを名前を付けて保存/呼び出し。リネーム・複製・削除・初期化・ランダム生成に対応 |
 | **Play Mode** | EZ Mode（ダイアトニック）／ Pro Mode（クロマチック、スケール選択可）をSETTINGメニューで切り替え |
+| **キーボード自動復帰** | Cardputer ADVのキーボードチップ特有の既知の癖により入力が反応しなくなった場合、自動検知して最大30秒程度で再起動・復帰 |
 | **SD保存** | 現在の設定を `/CPS/settings.json` に自動保存 |
 
-### IMU / PAD 割り当て可能なターゲット（17種）
+### IMU / PAD 割り当て可能なターゲット
 
-`TIMBRE` · `VIBRATO_DEPTH` · `VIBRATO_RATE` · `TREMOLO` · `VOLUME` · `PITCH_BEND` · `BEND_UP` · `BEND_DOWN` · `BITCRUSH` · `FILTER_CUTOFF` · `PWM` · `DETUNE` · `NOISE` · `SUB_LEVEL` · `RESONANCE` · `LFO_RATE` · `LFO_DEPTH`（+ `NONE`）
+`TIMBRE` · `VIBRATO_DEPTH` · `VIBRATO_RATE` · `TREMOLO` · `VOLUME` · `PITCH_BEND` · `BEND_UP` · `BEND_DOWN` · `BITCRUSH` · `FILTER_CUTOFF` · `SHAPE`（旧PWM）· `DETUNE` · `NOISE` · `SUB_LEVEL` · `RESONANCE` · `LFO_RATE` · `LFO_DEPTH` · `RING_MOD_RATE` · `RING_MOD_MIX` · `LIMITER_DRIVE` · `CHORUS_DEPTH` · `CHORUS_MIX` · `DELAY_FEEDBACK` · `DELAY_MIX` · `REVERB_ROOM` · `REVERB_MIX`（+ `NONE`）
 
 - **PITCH_BEND** — バイポーラ：傾き（またはPADの押す方向）がそのままベンドの方向になります
 - **BEND_UP / BEND_DOWN** — 絶対値：常にピッチを上げる/下げる方向に作用します
 - **VOLUME** — 現在の音量に対する相対倍率（0〜100%）。傾き/PAD操作の量に応じて減衰するのみで、設定音量を超えることはありません
 - **ArpTempo / ArpSwing** — PLAYモードではArpのTempo/Swingを、SEQモードではSEQ自体のTempo/Swingを操作します（同じ軸設定のまま、起点となっているモードに応じて自動で切り替わります）
+- **FX系ターゲット（Ring Mod／Limiter／Chorus／Delay／Reverb）** — 対応するエフェクトのMixが0（OFF）のときは無効化されます。Chorus RateとDelay Timeは音質上の理由から変調対象になっていません
 
 ---
 
@@ -199,32 +282,39 @@ SDカードが挿入されていない場合でも、デフォルト設定でア
 
 | キー | 動作 |
 |---|---|
-| ノートキー | 音を再生（EZ/Pro Modeで配列が異なる。上記「主な機能」参照） |
+| ノートキー | 音を再生（EZ/Pro Modeで配列が異なる。上記「主な機能」参照）。モノフォニック（単音）につき、複数キー同時押しは主にArpの和音指定に使用 |
 | `;` / `.`（ADV）、`J`/`N`（オリジナル） | オクターブ 上げ / 下げ（±2オクターブ） |
 | `,` / `/`（ADV）、`B`/`M`（オリジナル） | 転調 下げ / 上げ（±12半音） |
-| `k` / `l` | 音量 下げ / 上げ |
+| `k` / `l` | 音量 下げ / 上げ（1%刻み、長押しで加速） |
 | `Z` | ベンドダウン（押している間） |
 | `X` | ベンドアップ（押している間） |
 | `C` | ポルタメント ON/OFF切り替え |
 | `A` | IMU/PAD X軸のホールド ON/OFF切り替え |
 | `S` | IMU/PAD Y軸のホールド ON/OFF切り替え |
+| `Shift+A` | IMU X軸そのものの無効化／有効化切り替え（ADVのみ） |
+| `Shift+S` | IMU Y軸そのものの無効化／有効化切り替え（ADVのみ） |
 | `D` | ノートホールド ON/OFF切り替え |
 | `V` | アルペジエーター・ラッチ ON/OFF切り替え（ADVのみ） |
 | `Shift+V` | アルペジエーター ON/OFF切り替え（ADVのみ、他の画面からも操作可能） |
+| `Shift+1`〜`Shift+0` | モーフスロット1〜10へ切り替え |
+| `Shift+Enter` | タップテンポ |
 | `Space` | SEQのパターン再生/停止（SEQ画面にいなくても操作可能） |
 | `H`（長押し） | ヘルプ表示 |
+| `Shift+H` | ヘルプ表示をラッチ（固定）。もう一度で解除 |
 | デバイスを傾ける（ADV）／`;`/`.`/`,`/`/`でPAD操作（オリジナル） | IMU/PAD X/Y軸に割り当てたパラメータを操作 |
 
 PLAY画面には、現在の音名・周波数・オクターブ/転調/ポルタメント/ノートホールド状態、ベンドメーター、IMU/PADの状態、IMU/PAD X/Y軸のターゲットと現在値（ホールド中は末尾に **(HOLD)** と表示）が表示されます。アルペジエーターがON中は、保持している全てのノートが一覧表示されます。
 
 ### VCO画面
 
-左列：Timbre・PWM・Detune・FineTune　　右列：Sub Lvl・Sub Oct・Noise
+Osc（波形）・Timbre・Shape・Detune・FineTune・Vibrato Depth/Rate・Sub Level/Octave・Noise・Osc2 Mix（波形/オクターブ/デチューンを含む）
 
 | キー | 動作 |
 |---|---|
 | `;` / `.` | 項目選択（上下） |
 | `,` / `/` | 値の増減 |
+
+波形は12種類（Sine / Triangle / Sawtooth / Square / Wavefolder / HalfSine / Parabolic / ESaw / Squeeze / ESquare / Saw2 / Square2）から選択でき、Shapeで音色を連続的に変化させられます。Timbreは、SETTING > Patch > Morphで組んだ最大6波形のモーフチェーン内での位置を指定します。
 
 ### VCF画面
 
@@ -259,6 +349,28 @@ Wave（波形）・Rate（0.1〜20Hz）・Depth（0〜100%）・Target（変調�
 
 画面上部にはLFO波形と、現在の位相を示すリアルタイムのマーカーが表示されます。
 
+### FX画面
+
+複数のエフェクトを自由に重ねてかけられるタブです。6つのパッドが2段×3個で並びます。
+
+| キー | 動作 |
+|---|---|
+| `,` / `/` | パッド選択 |
+| `Enter` | 選択中のエフェクトをON/OFF切り替え |
+| `.` | 選択中のエフェクトのパラメータ画面を開く |
+| `Tab`（パラメータ画面から） | パッド選択画面へ戻る |
+
+| エフェクト | パラメータ |
+|---|---|
+| Ring Modulator | Rate・Mix |
+| Soft Limiter | Drive・Mix |
+| Chorus | Rate・Depth・Mix |
+| Delay | Time・Feedback・Mix |
+| Reverb | Room・Damping・Mix |
+| Bitcrush | Amount |
+
+各エフェクトはMixを0にすることでOFFになります。一度OFFにしても、直前のMix値はセッション中は記憶され、再度ONにすると復元されます（電源を切ると忘れます）。
+
 ### SEQ画面（ステップシーケンサー）
 
 `G0`ボタンでPLAY画面からワンタッチで切り替わります。16ステップのTB-303スタイルシーケンサーで、音符・ベロシティに加えてTie（音の連結）・Slide（スライド）・Accent（アクセント）を各ステップに設定できます。
@@ -279,14 +391,17 @@ Wave（波形）・Rate（0.1〜20Hz）・Depth（0〜100%）・Target（変調�
 | `Shift+X` | 選択範囲をカット |
 | `Enter` | カーソル位置にペースト |
 | `Space` | パターンの再生／停止 |
-| `k` / `l` | 音量 下げ / 上げ |
+| `k` / `l` | 音量 下げ / 上げ（1%刻み、長押しで加速） |
+| `Shift+Enter` | タップテンポ |
+| `Tab` / `Shift+Tab` | メニューを順に／逆順に切り替え |
 | `H`（長押し） | ヘルプ表示 |
+| `Shift+H` | ヘルプ表示をラッチ（固定）。もう一度で解除 |
 
 ステップグリッドでは、ベロシティがバーの高さで表現され、Tieで連結された範囲は太い枠でひとつながりの図形として表示されます。Accentのあるステップは赤色で強調されます。
 
 ### SETTING画面
 
-Patch / Pattern / IMU（オリジナルでは PAD）/ Bend / Portamento / Play Mode / Arp（ADVのみ）の入り口が並びます。**Patch/IMU/Bend/PortamentoはPLAY・SEQどちらのモードからでも表示され、Patternは SEQ起点の時のみ、ArpはPLAY起点の時のみ**表示されます。
+Patch / Pattern / IMU（オリジナルでは PAD）/ Bend / Portamento / Play Mode / Arp（ADVのみ）/ MIDI / MIDI Out / MIDI In / Theremin / Screen の入り口が並びます。**Patch/IMU/Bend/Portamento/MIDI系/Screen/ThereminはPLAY・SEQどちらのモードからでも表示され、Patternは SEQ起点の時のみ、ArpはPLAY起点の時のみ**表示されます。
 
 | キー | 動作 |
 |---|---|
@@ -296,7 +411,11 @@ Patch / Pattern / IMU（オリジナルでは PAD）/ Bend / Portamento / Play M
 
 #### Patchサブメニュー
 
-Save・Load・Reset（音色初期化）・Random（音色ランダム生成）。Reset/Randomはいずれも確認ダイアログ付きです。
+Save・Load・Reset（音色初期化）・Random（音色ランダム生成）・Morph（モーフスロットの設定）。Reset/Randomはいずれも確認ダイアログ付きです。
+
+Resetは、確認画面のあとVCO・VCF・VCA・LFO・IMUの設定をすべて初期状態に戻します（Bend・Portamento・Arpはパッチ管理から独立しているため対象外。それぞれ専用のResetがあります）。
+
+Morphでは、最大10個のパッチをモーフスロットに割り当て、`Shift+1`〜`Shift+0`で切り替えられるようにできます。Morph Timeを0以外に設定すると、切り替えが指定時間をかけてなめらかに行われます。
 
 #### Patternサブメニュー
 
@@ -306,15 +425,15 @@ Save・Load・Random（パターンランダム生成）。Randomは現在のス
 
 X/Y軸それぞれの Target・Sensitivity・Invert・Curve・Deadzone（オリジナルでは非表示）に加え、Calibrate（ON/OFF切り替え式、ADVのみ）。
 
-Target選択は`/`でスクロール一覧を開き、カテゴリー区切り線（Pitch/Volume/Timbre/Filter/LFO/Effect）付きの一覧から`;`/`.`で選択、`/`またはEnterで決定します。
+Target選択は`/`でスクロール一覧を開き、カテゴリー区切り線付きの一覧から`;`/`.`で選択、`/`またはEnterで決定します。選択できるターゲットは上記「IMU / PAD 割り当て可能なターゲット」を参照してください。
 
 #### Bendサブメニュー
 
-Bend幅・アタック・リリース・Reset（初期化）。
+Bend幅・アタック・リリース・Reset（初期化）。パッチには保存されないデバイス側の設定です。
 
 #### Portamentoサブメニュー
 
-ON/OFF・速度・Reset（初期化）。
+ON/OFF・速度・Reset（初期化）。パッチには保存されないデバイス側の設定です。
 
 #### Play Modeサブメニュー
 
@@ -322,7 +441,19 @@ EZ Mode ⇔ Pro Mode の切り替え、Pro Mode時はスケール選択（49種�
 
 #### Arpサブメニュー（ADVのみ）
 
-Type（UP/DOWN/UP-DOWN/AS PLAYED/RANDOM）・Tempo・Rate・Swing。ON/OFF自体はSETTINGメニューではなく`Shift+V`キーで、どの画面からでも操作します。
+Type（UP/DOWN/UP-DOWN/AS PLAYED/RANDOM）・Tempo・Rate・Swing（Tempo/Swingは1刻み、長押しで加速）。ON/OFF自体はSETTINGメニューではなく`Shift+V`キーで、どの画面からでも操作します。パッチには保存されないデバイス側の設定です。
+
+#### MIDI / MIDI Out / MIDI Inサブメニュー
+
+外部MIDI機器との連携設定です。全体設定・送信設定・受信設定の3画面に分かれています。詳細はリファレンスガイドを参照してください。
+
+#### Thereminサブメニュー
+
+別売りの距離センサー（ToF）ユニット（M5Stack Unit ToF4M）を使った非接触演奏の設定です。接続方法（Grove／LoRa Cap共有）、音程の割り当てモード（Smooth／Semitone）、音域（Top・Span）を設定できます。詳細はリファレンスガイドを参照してください。
+
+#### Screenサブメニュー
+
+UIテーマ（5種類）・画面の明るさなど、見た目に関する設定です。
 
 ### Patch Bank画面
 
@@ -372,6 +503,8 @@ SETTING画面のPatternサブメニューでSave/Loadを選択すると開きま
 | `Shift+S` / `Shift+L` | Songの保存／読込 |
 | `k` / `l` | 音量 下げ / 上げ |
 | `Tab` | 元のモード（PLAY/SEQ）へ戻る |
+| `H`（長押し） | ヘルプ表示 |
+| `Shift+H` | ヘルプ表示をラッチ（固定）。もう一度で解除 |
 
 画面には、各エントリーがバンク文字ごとに色分けされたブロックとして横並びに表示され（幅の下のバーはリピート回数を表現）、再生中／選択中のパターンの中身を小さなグリッドでプレビュー表示します。トランスポーズは半音単位（クロマチック）で、各エントリーごとに独立して設定できます。Songは `/CPS/Song/` フォルダに番号（1〜8）で保存されます。
 
@@ -387,19 +520,24 @@ SETTING画面のPatternサブメニューでSave/Loadを選択すると開きま
 - **アルペジエーター非対応**：アルペジエーター機能は複数キーの同時押しを必要とするため、3キー同時押し制限のあるオリジナル版では非対応です
 - **ステップシーケンサー・Pattern Bank・Songモードは両機種で利用可能**：1ステップずつ音を入力する形式のため、同時押し制限の影響を受けません
 - **同時押し3キー制限**：ハードウェアの制約により、4キー以上の同時押しでキーの誤検出が発生する可能性があります
+- **キーボード自動復帰機能について**：この機能が対処する既知の癖は、Cardputer ADVのキーボードチップ（TCA8418、I2C接続）特有のものです。オリジナルCardputerは異なる方式でキーを読み取っているため、この特定の癖は該当しません
 
 ---
 
 ## 信号経路
 
 ```
-オシレーター（ウェーブテーブル・モーフィング）
+オシレーター（ウェーブテーブル・モーフィング、Shape）
     │
+    ├── 第2オシレーター（Osc2）
     ├── サブオシレーター（-1/-2 oct）
     ├── ノイズブレンド
     │
     ▼
-ビットクラッシャー
+Ring Modulator
+    │
+    ▼
+Bitcrush
     │
     ▼
 Biquadフィルター  ◄── フィルターエンベロープ / フィルターキートラッキング / IMU(PAD) / 汎用LFO(Filter)
@@ -414,10 +552,24 @@ Biquadフィルター  ◄── フィルターエンベロープ / フィル�
 ADSRエンベロープ
     │
     ▼
+Chorus
+    │
+    ▼
+Delay
+    │
+    ▼
+Reverb
+    │
+    ▼
+Soft Limiter
+    │
+    ▼
 スピーカー（I2S）
 ```
 
 ピッチ変調（ビブラートLFO + IMU(PAD)ベンド + キーベンド + 汎用LFO(Pitch)）は、サンプル生成前のオシレーター位相増分に対して適用されます。SEQ/Songモードでは、この経路がステップシーケンサーのタイミングエンジンによって駆動されます。
+
+Chorus/Delay/Reverbは、鍵盤を離したあとも自然な余韻（テイル）が鳴り続けるよう、ノート終了後も一定時間（最大約8秒）処理が継続されます。
 
 ---
 
@@ -449,10 +601,12 @@ PlatformIOが自動管理します。
 
 ## 既知の制限事項 / 今後のアイデア
 
-- モノフォニックのみ（後着優先）。ポリフォニック対応の予定はありません
+- モノフォニックのみ（単音）。ポリフォニック対応の予定はありません
 - オリジナルCardputerは開発者による実機確認ができていません（動作報告・フィードバック歓迎です）
 - ディスプレイは240×135px。レイアウトはやや窮屈です
-- v1.0の実装内容は検討中です
+- Cardputer ADVのキーボードチップ（TCA8418）には、高速なキー連打で入力が反応しなくなる既知のハードウェア上の癖があります。自動検知・自動復帰の仕組みで対処していますが、根本的な解消ではありません（詳細はリファレンスガイドのトラブルシューティングを参照）
+- テルミン機能のLoRa Cap以外のGrove拡張ユニットでの動作は未検証です
+- v1.0以降の実装内容は検討中です
 
 ---
 
